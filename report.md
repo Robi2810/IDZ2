@@ -20,17 +20,17 @@
 Далее в командную строку вводим данные команды для получения искомого ассемблерского файла, а также исполняемого файла.
 
 
-$gcc -O0 -Wall -fno-asynchronous-unwind-tables 4.c -o main
+$gcc -O0 -Wall -fno-asynchronous-unwind-tables 4.c -o 4
 
 
-$gcc -O0 -Wall -fno-asynchronous-unwind-tables -S 4.c -o main.s
+$gcc -O0 -Wall -fno-asynchronous-unwind-tables -S 4.c -o 4.s
 
 
 $gcc 4.s -o
 
 Лишние макросы были убраны за счёт использования аргументов командной строки. 
 
-`gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions -S main.c`
+`gcc -masm=intel -fno-asynchronous-unwind-tables -fno-jump-tables -fno-stack-protector -fno-exceptions -S 4.c`
 
 Необходимые комментарии находятся в 4.s
 
