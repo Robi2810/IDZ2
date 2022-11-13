@@ -95,9 +95,10 @@ find_chars_by_code:
     .find_char_loop:
         cmp rcx, r11
         jge .find_char_loop_nf
+        xor rax, rax
         mov al, byte ptr [r10 + rcx]
-        cmp al, bl
-        jl .find_char_loop_success
+        cmp rax, rbx
+        jge .find_char_loop_success
         inc rcx
         jmp .find_char_loop
     .find_char_loop_success:

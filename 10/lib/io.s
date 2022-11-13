@@ -222,14 +222,16 @@ file_create:
 
 # input: rax - file desc
 # input: rbx - string array
+# input: rcx - max length
 file_read_string_line:
     push r12
     push r13
     push r14
-    push rcx
+    push r15
     push rdx
     mov r12, rax
     mov r14, rbx
+    mov r15, rcx
     xor r13, r13
     .rd_ch_lp_2:                          # reading 1 byte and checking if it is eol
         mov rdi, r12                    # file
@@ -242,10 +244,12 @@ file_read_string_line:
         mov rax, _char_buffer
         mov [r14 + r13], rax            # append to save to array
         inc r13
+        cmp r13, r15
+        jge .rd_ch_lp_ex_2
         jmp .rd_ch_lp_2
     .rd_ch_lp_ex_2:
         pop rdx
-        pop rcx
+        pop r15
         pop r14
         pop r13
         pop r12

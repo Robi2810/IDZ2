@@ -138,6 +138,7 @@ _start:
 
     push rax
     mov rbx, r14
+    mov rcx, _string_big_limit
     call file_read_string_line
     pop rax
     call file_close
